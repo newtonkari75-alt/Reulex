@@ -136,6 +136,22 @@
         .bg-custom-blue { background-color: #193266; }
         .border-custom-blue { border-color: #193266; }
         .hover-bg-custom-blue:hover { background-color: #12254a; }
+
+        /* Animação Suave de Entrada */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .animate-entrance {
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
     </style>
 </head>
 <body class="bg-gray-200 lg:bg-white flex flex-col min-h-screen">
@@ -143,13 +159,14 @@
     <!-- Container da Imagem de Fundo (Sem Link, Z-Index 0) -->
     <div class="page-background h-screen w-screen bg-cover bg-no-repeat fixed inset-0 z-0 bg-fixed"></div>
     
-    <!-- Fundo Escuro Visual (Apenas Overlay) -->
-    <div class="fixed inset-0 bg-black/60 lg:bg-black/20 backdrop-blur-sm lg:backdrop-blur-none z-10 pointer-events-none"></div>
+    <!-- Fundo Escuro Visual com Leve Blur (backdrop-blur-[2px]) -->
+    <div class="fixed inset-0 bg-black/60 lg:bg-black/20 backdrop-blur-[2px] z-10 pointer-events-none transition-all duration-700"></div>
 
     <!-- Modal de Oferta -->
     <div class="fixed inset-0 z-20 flex items-center justify-center p-4 pointer-events-none">
         
-        <div class="pointer-events-auto max-w-lg w-full bg-white border border-gray-200 rounded-xl shadow-2xl p-8 text-center relative overflow-hidden">
+        <!-- Adicionada classe 'animate-entrance' para animação de entrada -->
+        <div class="animate-entrance pointer-events-auto max-w-lg w-full bg-white border border-gray-200 rounded-xl shadow-2xl p-8 text-center relative overflow-hidden">
             
             <div class="absolute top-0 left-0 w-full h-2 bg-custom-blue"></div>
 
@@ -176,7 +193,7 @@
                     OBTENER DESCUENTO AHORA
                 </a>
                 
-                <!-- Link Secundário apontando para o mesmo destino (padrão de conversão) -->
+                <!-- Link Secundário -->
                 <a href="https://xzi94.doctortraffox.com/l" 
                    class="text-sm text-gray-500 hover:text-gray-700 underline font-medium">
                     No, gracias, prefiero pagar el precio completo
